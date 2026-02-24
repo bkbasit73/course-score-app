@@ -1,0 +1,27 @@
+:root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+body { margin: 0; background: #f6f7fb; color: #111; }
+.container { max-width: 980px; margin: 40px auto; padding: 0 16px; }
+.card { background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,.08); padding: 22px; }
+.header { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+h1 { margin: 0; font-size: 28px; }
+h2 { margin: 0 0 12px 0; font-size: 18px; }
+.final { text-align: right; }
+.big { font-size: 30px; font-weight: 700; }
+.muted { color: #666; margin: 6px 0 0 0; }
+
+.row { display: flex; gap: 12px; align-items: end; margin: 18px 0; flex-wrap: wrap; }
+label { display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+select, input { padding: 10px 12px; border-radius: 10px; border: 1px solid #ddd; min-width: 200px; }
+button { padding: 10px 14px; border-radius: 10px; border: 0; cursor: pointer; background: #222; color: white; font-weight: 600; }
+button.danger { background: #b00020; }
+.inline { display: inline-flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+.grid { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; }
+.panel { border: 1px solid #eee; border-radius: 14px; padding: 14px; background: #fff; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 10px 8px; border-bottom: 1px solid #eee; text-align: left; vertical-align: top; }
+.actions { width: 1%; white-space: nowrap; }
+
+.weights { list-style: none; padding: 0; margin: 0; }
+.weights li { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }

@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+  <div class="header">
+    <h1>Course Scores</h1>
+    <div class="final">
+      <div class="big">{{ final_percent }}%</div>
+      <div class="muted">Final Grade: <b>{{ final_letter }}</b></div>
+    </div>
+  </div>
+
+  <form class="row" action="{{ url_for('add') }}" method="post">
+    <label>
+      Grade item
+      <select name="item" required>
+        {% for gi in grade_items %}
+        <option value="{{ gi }}">{{ gi }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label>
+      Score (0–100)
+      <input name="score" type="number" min="0" max="100" step="0.1" required />
+    </label>
+
+    <button type="submit">Add</button>
+  </form>
+
+  <div class="grid">
+    <div class="panel">
+      <h2>Entries</h2>
+      {% if grades|length == 0 %}
+        <p class="muted">No scores yet. Add some above.</p>
+      {% else %}
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Score</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for g in grades %}
+          <tr>
+            <td>{{ g.item }}</td>
+            <td>{{ g.score }}</td>
+            <td class="actions">
+              <form action="{{ url_for('edit', grade_id=g.id) }}" method="post" class="inline">
+                <select name="item">
+                  {% for gi in grade_items %}
+                  <option value="{{ gi }}" {% if gi == g.item %}selected{% endif %}>{{ gi }}</option>
+                  {% endfor %}
+                </select>
+                <input name="score" type="number" min="0" max="100" step="0.1" value="{{ g.score }}" />
+                <button type="submit">Update</button>
+              </form>
+
+              <form action="{{ url_for('delete', grade_id=g.id) }}" method="post" class="inline">
+                <button type="submit" class="danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+
+    <div class="panel">
+      <h2>Weights</h2>
+      <ul class="weights">
+        {% for k, v in weights.items() %}
+        <li><span>{{ k }}</span><span>{{ (v * 100) | round(0) }}%</span></li>
+        {% endfor %}
+      </ul>
+      <p class="muted">Missing items are treated as 0.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
